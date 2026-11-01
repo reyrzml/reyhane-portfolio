@@ -1,763 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reyhane Rezaei | Digital Marketing Manager</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- Variables --- */
-        :root {
-            --bg-color: #050505;
-            --primary: #FF5722; /* Vibrant Orange */
-            --primary-hover: #E64A19;
-            --text-main: #FFFFFF;
-            --text-muted: #A0A0A0;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --font-display: 'Outfit', sans-serif;
-            --font-body: 'Inter', sans-serif;
-        }
-
-        /* --- Global Reset --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--font-display);
-            font-weight: 600;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* --- Glassmorphism Utility --- */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-        }
-
-        /* --- Buttons --- */
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-family: var(--font-display);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .badge {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-right: 8px;
-            border: 1px solid var(--glass-border);
-        }
-
-        /* --- Header --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 16px 0;
-            background: rgba(5, 5, 5, 0.7);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        /* --- Hero Section --- */
-        #hero {
-            padding: 180px 0 100px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 16px;
-        }
-
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-
-        .hero-title {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            font-family: var(--font-display);
-        }
-
-        .services-glass {
-            padding: 24px;
-            margin-bottom: 40px;
-            display: inline-block;
-        }
-
-        .services-glass h3 {
-            margin-bottom: 16px;
-            font-size: 1.1rem;
-            color: var(--primary);
-        }
-
-        .services-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .services-list li {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
-        }
-
-        .services-list li::before {
-            content: '✦';
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            aspect-ratio: 4/5;
-        }
-
-        /* Placeholder for your image */
-        .hero-image-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #1a1a1a, #0a0a0a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-family: var(--font-display);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-        }
-
-        /* --- Sections Common --- */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 64px;
-            text-align: center;
-        }
-
-        .section-title span {
-            color: var(--primary);
-        }
-
-        /* --- Experience Section --- */
-        .resume-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .resume-card {
-            padding: 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            transition: transform 0.3s ease;
-        }
-        
-        .resume-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 87, 34, 0.3);
-        }
-
-        .resume-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .resume-company {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 16px;
-            font-size: 1.1rem;
-        }
-
-        .resume-desc {
-            color: var(--text-muted);
-            max-width: 700px;
-        }
-
-        .resume-meta {
-            text-align: right;
-            min-width: 180px;
-        }
-
-        .resume-date {
-            font-family: var(--font-display);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .resume-location {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* --- Grid Cards (Projects & Case Studies) --- */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .project-card {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .project-img {
-            width: 100%;
-            height: 200px;
-            background: #1a1a1a;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .project-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-        }
-
-        .project-company {
-            color: var(--primary);
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-        }
-
-        .project-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        /* --- Skills Section --- */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-family: var(--font-display);
-        }
-
-        /* --- Recommendations --- */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-        }
-
-        .review-card {
-            padding: 32px;
-        }
-
-        .review-text {
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .reviewer {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .reviewer-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #333;
-        }
-
-        .reviewer-info h4 {
-            font-size: 1.1rem;
-        }
-        
-        .reviewer-info p {
-            font-size: 0.8rem;
-            color: var(--primary);
-        }
-
-        /* --- FAQ --- */
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        details.glass {
-            padding: 24px;
-            cursor: pointer;
-        }
-
-        summary {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 600;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::after {
-            content: '+';
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        details[open] summary::after {
-            content: '−';
-        }
-
-        .faq-answer {
-            margin-top: 16px;
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 64px 0;
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 32px;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 992px) {
-            #hero { grid-template-columns: 1fr; text-align: center; }
-            .hero-buttons { justify-content: center; }
-            .services-glass { text-align: left; }
-            .grid-3 { grid-template-columns: repeat(2, 1fr); }
-            .resume-card { flex-direction: column; gap: 24px; }
-            .resume-meta { text-align: left; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Mobile menu needs JS, hidden for minimal version */
-            .grid-3, .grid-2 { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 3rem; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reyhane Rezaei | Digital Marketing Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-color:#050505;--primary:#FF5722;--primary-hover:#E64A19;--text-main:#FFFFFF;--text-muted:#A0A0A0;--glass-bg:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.08);--font-display:'Outfit',sans-serif;--font-body:'Inter',sans-serif;--section-gap:120px;--title-gap:64px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background-color:var(--bg-color);color:var(--text-main);font-family:var(--font-body);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600}
+a{text-decoration:none;color:var(--text-main);transition:all .3s ease}
+.container{max-width:1200px;margin:0 auto;padding-inline:24px}
+
+/* --- Galaxy background (fixed, faded, orange palette) --- */
+.cosmos{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 8%,rgba(255,87,34,.10),transparent 70%),
+    radial-gradient(ellipse 50% 45% at 8% 55%,rgba(255,87,34,.06),transparent 70%),
+    radial-gradient(ellipse 70% 40% at 60% 100%,rgba(230,74,25,.08),transparent 70%)}
+.cosmos .stars{position:absolute;inset:0;opacity:.55;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.7),transparent),
+    radial-gradient(1px 1px at 27% 72%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1.5px 1.5px at 41% 34%,rgba(255,190,160,.7),transparent),
+    radial-gradient(1px 1px at 58% 88%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1px 1px at 73% 22%,rgba(255,255,255,.6),transparent),
+    radial-gradient(1.5px 1.5px at 88% 63%,rgba(255,190,160,.6),transparent),
+    radial-gradient(1px 1px at 94% 91%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1px 1px at 5% 92%,rgba(255,255,255,.5),transparent);
+  background-size:520px 520px}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;animation:drift 28s ease-in-out infinite alternate}
+.orb.o1{width:520px;height:520px;top:-140px;right:-120px;background:radial-gradient(circle,#FF5722,transparent 70%)}
+.orb.o2{width:420px;height:420px;top:45%;left:-160px;background:radial-gradient(circle,#E64A19,transparent 70%);animation-duration:34s;opacity:.18}
+.orb.o3{width:360px;height:360px;bottom:-120px;right:20%;background:radial-gradient(circle,#FF8A65,transparent 70%);animation-duration:40s;opacity:.14}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(-50px,40px) scale(1.15)}}
+@media (prefers-reduced-motion:reduce){.orb{animation:none}}
+
+.glass{background:var(--glass-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);border-radius:16px}
+.btn{display:inline-block;padding:12px 24px;border-radius:30px;font-family:var(--font-display);font-weight:600;cursor:pointer;transition:all .3s ease;border:none}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 15px rgba(255,87,34,.3)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1px solid var(--glass-border);color:var(--text-main)}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.badge{background:rgba(255,255,255,.1);padding:4px 12px;border-radius:20px;font-size:.8rem;color:var(--text-muted);margin-right:8px;border:1px solid var(--glass-border)}
+
+header{position:fixed;top:0;width:100%;z-index:1000;padding:16px 0;background:rgba(5,5,5,.7);backdrop-filter:blur(16px);border-bottom:1px solid var(--glass-border)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.nav-links{display:flex;gap:32px}
+.nav-links a:hover{color:var(--primary)}
+.header-actions{display:flex;align-items:center;gap:24px}
+
+/* --- Sections: vertical spacing uses padding-block so it never collides with .container --- */
+section{padding-block:var(--section-gap);scroll-margin-top:60px}
+#hero{padding-block:180px 100px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-content h1{font-size:4rem;line-height:1.1;margin-bottom:16px}
+.hero-content h1 span{color:var(--primary)}
+.hero-title{font-size:1.5rem;color:var(--text-muted);margin-bottom:40px;font-family:var(--font-display)}
+.services-glass{padding:24px;margin-bottom:40px;display:inline-block}
+.services-glass h3{margin-bottom:16px;font-size:1.1rem;color:var(--primary)}
+.services-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.services-list li{display:flex;align-items:center;gap:8px;font-size:.95rem}
+.services-list li::before{content:'✦';color:var(--primary);font-size:1.2rem}
+.hero-buttons{display:flex;gap:16px}
+.hero-image-wrapper{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5}
+.hero-image-placeholder{width:100%;height:100%;background:linear-gradient(45deg,#1a1a1a,#0a0a0a);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-family:var(--font-display);border:1px solid var(--glass-border);border-radius:24px}
+
+.section-title{font-size:2.5rem;margin-bottom:var(--title-gap);text-align:center}
+.section-title span{color:var(--primary)}
+
+.resume-list{display:flex;flex-direction:column;gap:24px}
+.resume-card{padding:32px;display:flex;justify-content:space-between;align-items:flex-start;transition:transform .3s ease}
+.resume-card:hover{transform:translateY(-5px);border-color:rgba(255,87,34,.3)}
+.resume-info h3{font-size:1.5rem;margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px}
+.resume-company{color:var(--primary);font-weight:500;margin-bottom:16px;font-size:1.1rem}
+.resume-desc{color:var(--text-muted);max-width:700px}
+.resume-meta{text-align:right;min-width:180px}
+.resume-date{font-family:var(--font-display);font-weight:600;margin-bottom:4px}
+.resume-location{color:var(--text-muted);font-size:.9rem}
+
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.project-card{padding:20px;display:flex;flex-direction:column;gap:20px;transition:all .3s ease}
+.project-card:hover{transform:translateY(-10px);border-color:rgba(255,255,255,.2)}
+.project-img{width:100%;height:200px;background:#1a1a1a;border-radius:12px;border:1px solid var(--glass-border)}
+.project-content{display:flex;flex-direction:column;flex-grow:1}
+.project-content h3{font-size:1.3rem;margin-bottom:8px}
+.project-company{color:var(--primary);font-size:.9rem;margin-bottom:12px}
+.project-desc{color:var(--text-muted);font-size:.95rem;flex-grow:1}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+
+.skills-container{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.skill-tag{padding:12px 24px;font-size:1rem;font-family:var(--font-display)}
+#skills .section-title{margin-bottom:40px;font-size:2rem}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.review-card{padding:32px}
+.review-text{font-style:italic;color:var(--text-muted);margin-bottom:24px}
+.reviewer{display:flex;align-items:center;gap:16px}
+.reviewer-img{width:50px;height:50px;border-radius:50%;background:#333}
+.reviewer-info h4{font-size:1.1rem}
+.reviewer-info p{font-size:.8rem;color:var(--primary)}
+
+.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+details.glass{padding:24px;cursor:pointer}
+summary{font-family:var(--font-display);font-size:1.2rem;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';color:var(--primary);font-size:1.5rem}
+details[open] summary::after{content:'−'}
+.faq-answer{margin-top:16px;color:var(--text-muted);line-height:1.8}
+
+footer{padding:80px 0 64px;border-top:1px solid var(--glass-border);text-align:center}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.footer-links a:hover{color:var(--primary)}
+
+@media (max-width:992px){
+  :root{--section-gap:96px;--title-gap:48px}
+  #hero{grid-template-columns:1fr;text-align:center}
+  .hero-buttons{justify-content:center}
+  .services-glass{text-align:left}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .resume-card{flex-direction:column;gap:24px}
+  .resume-meta{text-align:left}
+}
+@media (max-width:768px){
+  :root{--section-gap:80px}
+  .nav-links{display:none}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .hero-content h1{font-size:3rem}
+}
+</style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <h2 style="font-size: 1.5rem;">Reyhane<span style="color: var(--primary)">.</span></h2>
-                </div>
-                <div class="nav-links">
-                    <a href="#experience">Collaborations</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#case-studies">Case Studies</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="header-actions">
-                    <a href="mailto:Reyhanehrezaei888@gmail.com" style="font-size: 0.9rem;">Email Me</a>
-                    <a href="#" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Download CV</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+<div class="cosmos" aria-hidden="true">
+  <div class="stars"></div>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
 
-    <!-- HERO SECTION -->
-    <section id="hero" class="container">
-        <div class="hero-content">
-            <h1>Hi, I'm <br><span>Reyhane Rezaei</span></h1>
-            <p class="hero-title">Digital Marketing Manager</p>
-            
-            <div class="services-glass glass">
-                <h3>My Expertise</h3>
-                <ul class="services-list">
-                    <li>Digital Marketing Strategy</li>
-                    <li>Social Media Marketing</li>
-                    <li>UI/UX Design</li>
-                    <li>Campaign & Ads Management</li>
-                </ul>
-            </div>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo"><h2 style="font-size:1.5rem;">Reyhane<span style="color:var(--primary)">.</span></h2></div>
+      <div class="nav-links">
+        <a href="#experience">Collaborations</a>
+        <a href="#projects">Projects</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="header-actions">
+        <a href="mailto:Reyhanehrezaei888@gmail.com" style="font-size:.9rem;">Email Me</a>
+        <a href="#" class="btn btn-primary" style="padding:8px 20px;font-size:.9rem;">Download CV</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="#projects" class="btn btn-outline">View Portfolio</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <div class="hero-image-wrapper">
-                <!-- Replace with your actual photo (e.g. <img src="profile.jpg" alt="Reyhane">) -->
-                <div class="hero-image-placeholder">Photo Placeholder</div>
-            </div>
-        </div>
-    </section>
+<section id="hero" class="container">
+  <div class="hero-content">
+    <h1>Hi, I'm <br><span>Reyhane Rezaei</span></h1>
+    <p class="hero-title">Digital Marketing Manager</p>
+    <div class="services-glass glass">
+      <h3>My Expertise</h3>
+      <ul class="services-list">
+        <li>Digital Marketing Strategy</li>
+        <li>Social Media Marketing</li>
+        <li>UI/UX Design</li>
+        <li>Campaign &amp; Ads Management</li>
+      </ul>
+    </div>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">Get In Touch</a>
+      <a href="#projects" class="btn btn-outline">View Portfolio</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-image-wrapper">
+      <div class="hero-image-placeholder">Photo Placeholder</div>
+    </div>
+  </div>
+</section>
 
-    <!-- EXPERIENCE SECTION -->
-    <section id="experience" class="container">
-        <h2 class="section-title">My <span>Background</span></h2>
-        
-        <div class="resume-list">
-            <!-- Job 1 -->
-            <div class="resume-card glass">
-                <div class="resume-info">
-                    <h3>Social Media Manager 
-                        <span class="badge">Full-time</span>
-                        <span class="badge">Remote</span>
-                    </h3>
-                    <p class="resume-company">Visternet</p>
-                    <p class="resume-desc">Led cross-functional Marketing and Social Media teams. Increased social media users by +80K followers and shifted focus to a conversion-oriented strategy, boosting leads from ~30 to ~500.</p>
-                </div>
-                <div class="resume-meta">
-                    <p class="resume-date">Jun 2023 - Jul 2026</p>
-                    <p class="resume-location">Toronto, Canada</p>
-                </div>
-            </div>
+<section id="experience" class="container">
+  <h2 class="section-title">My <span>Background</span></h2>
+  <div class="resume-list">
+    <div class="resume-card glass">
+      <div class="resume-info">
+        <h3>Social Media Manager <span class="badge">Full-time</span><span class="badge">Remote</span></h3>
+        <p class="resume-company">Visternet</p>
+        <p class="resume-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div class="resume-meta">
+        <p class="resume-date">Jun 2023 - Jul 2026</p>
+        <p class="resume-location">Toronto, Canada</p>
+      </div>
+    </div>
+    <div class="resume-card glass">
+      <div class="resume-info">
+        <h3>Marketing Manager <span class="badge">Part-time</span><span class="badge">Hybrid</span></h3>
+        <p class="resume-company">Jobteam</p>
+        <p class="resume-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+      <div class="resume-meta">
+        <p class="resume-date">Jan 2020 - Present</p>
+        <p class="resume-location">Tehran, Iran</p>
+      </div>
+    </div>
+    <div class="resume-card glass">
+      <div class="resume-info">
+        <h3>Social Media Manager <span class="badge">Full-time</span><span class="badge">On-site</span></h3>
+        <p class="resume-company">Peyke Bartar</p>
+        <p class="resume-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="resume-meta">
+        <p class="resume-date">Apr 2021 - Sep 2022</p>
+        <p class="resume-location">Tehran, Iran</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <!-- Job 2 -->
-            <div class="resume-card glass">
-                <div class="resume-info">
-                    <h3>Marketing Manager 
-                        <span class="badge">Part-time</span>
-                        <span class="badge">Hybrid</span>
-                    </h3>
-                    <p class="resume-company">Jobteam</p>
-                    <p class="resume-desc">Designed and executed performance-based campaigns across social media and Google Ads. Analyzed user behavior to generate actionable insights, improving CTR and reducing CAC.</p>
-                </div>
-                <div class="resume-meta">
-                    <p class="resume-date">Jan 2020 - Present</p>
-                    <p class="resume-location">Tehran, Iran</p>
-                </div>
-            </div>
+<section id="projects" class="container">
+  <h2 class="section-title">Selected <span>Projects</span></h2>
+  <div class="grid-3">
+    <div class="project-card glass">
+      <div class="project-img"></div>
+      <div class="project-content">
+        <p class="project-company">Visternet | 2025</p>
+        <h3>Lead Gen Campaign Optimization</h3>
+        <div class="project-tags"><span class="badge">Google Ads</span><span class="badge">Conversion</span></div>
+        <p class="project-desc">A comprehensive campaign overhaul that successfully increased monthly lead generation by optimizing the marketing funnel.</p>
+        <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;">View Details</a>
+      </div>
+    </div>
+    <div class="project-card glass">
+      <div class="project-img"></div>
+      <div class="project-content">
+        <p class="project-company">Jobteam | 2024</p>
+        <h3>B2B Growth Strategy</h3>
+        <div class="project-tags"><span class="badge">Strategy</span><span class="badge">B2B</span></div>
+        <p class="project-desc">Developed integrated cross-channel strategies collaborating with product and design teams to reduce CAC.</p>
+        <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;">View Details</a>
+      </div>
+    </div>
+    <div class="project-card glass">
+      <div class="project-img"></div>
+      <div class="project-content">
+        <p class="project-company">Independent | 2023</p>
+        <h3>E-commerce UI/UX Redesign</h3>
+        <div class="project-tags"><span class="badge">UI/UX</span><span class="badge">Figma</span></div>
+        <p class="project-desc">Redesigned the user interface for an online store, optimizing the checkout flow and enhancing user retention.</p>
+        <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;">View Details</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <!-- Job 3 -->
-            <div class="resume-card glass">
-                <div class="resume-info">
-                    <h3>Social Media Manager 
-                        <span class="badge">Full-time</span>
-                        <span class="badge">On-site</span>
-                    </h3>
-                    <p class="resume-company">Peyke Bartar</p>
-                    <p class="resume-desc">Developed and executed social media strategies and advertising campaigns. Managed operations across 5 accounts, achieving a 3x increase in sales and +50K new followers.</p>
-                </div>
-                <div class="resume-meta">
-                    <p class="resume-date">Apr 2021 - Sep 2022</p>
-                    <p class="resume-location">Tehran, Iran</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="case-studies" class="container">
+  <h2 class="section-title">Case <span>Studies</span></h2>
+  <div class="grid-3">
+    <div class="project-card glass" style="background:rgba(255,87,34,.05);">
+      <div class="project-img"></div>
+      <div class="project-content">
+        <h3>Scaling from 30 to 500 Leads</h3>
+        <div class="project-tags"><span class="badge">Performance Marketing</span><span class="badge">Analytics</span></div>
+        <p class="project-desc">How shifting from an awareness-driven model to a conversion-oriented strategy transformed the business.</p>
+        <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;">Read Case Study</a>
+      </div>
+    </div>
+    <div class="project-card glass" style="background:rgba(255,87,34,.05);">
+      <div class="project-img"></div>
+      <div class="project-content">
+        <h3>Organic Growth: +80K Followers</h3>
+        <div class="project-tags"><span class="badge">Social Media</span><span class="badge">Content</span></div>
+        <p class="project-desc">An in-depth look at the content calendar, team management, and execution that drove massive organic growth.</p>
+        <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;">Read Case Study</a>
+      </div>
+    </div>
+    <div class="project-card glass" style="background:rgba(255,87,34,.05);">
+      <div class="project-img"></div>
+      <div class="project-content">
+        <h3>3X Sales via Influencer Campaigns</h3>
+        <div class="project-tags"><span class="badge">Campaign</span><span class="badge">Influencer</span></div>
+        <p class="project-desc">Analyzing a successful cosmetics campaign using influencer marketing and tailored UI landing pages.</p>
+        <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;">Read Case Study</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- PROJECTS SECTION -->
-    <section id="projects" class="container">
-        <h2 class="section-title">Selected <span>Projects</span></h2>
-        
-        <div class="grid-3">
-            <!-- Project 1 -->
-            <div class="project-card glass">
-                <div class="project-img"></div> <!-- Replace with <img> -->
-                <div class="project-content">
-                    <p class="project-company">Visternet | 2025</p>
-                    <h3>Lead Gen Campaign Optimization</h3>
-                    <div class="project-tags">
-                        <span class="badge">Google Ads</span>
-                        <span class="badge">Conversion</span>
-                    </div>
-                    <p class="project-desc">A comprehensive campaign overhaul that successfully increased monthly lead generation by optimizing the marketing funnel.</p>
-                    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 16px;">View Details</a>
-                </div>
-            </div>
+<section id="skills" class="container" style="padding-block:60px;">
+  <h2 class="section-title">Core <span>Skills</span></h2>
+  <div class="skills-container">
+    <div class="skill-tag glass">Team &amp; Project Management</div>
+    <div class="skill-tag glass">Social Media Strategy</div>
+    <div class="skill-tag glass">Paid Media &amp; Ads</div>
+    <div class="skill-tag glass">A/B Testing</div>
+    <div class="skill-tag glass">UI/UX Design</div>
+    <div class="skill-tag glass">Data Analytics &amp; KPIs</div>
+    <div class="skill-tag glass">Lead Generation</div>
+  </div>
+</section>
 
-            <!-- Project 2 -->
-            <div class="project-card glass">
-                <div class="project-img"></div>
-                <div class="project-content">
-                    <p class="project-company">Jobteam | 2024</p>
-                    <h3>B2B Growth Strategy</h3>
-                    <div class="project-tags">
-                        <span class="badge">Strategy</span>
-                        <span class="badge">B2B</span>
-                    </div>
-                    <p class="project-desc">Developed integrated cross-channel strategies collaborating with product and design teams to reduce CAC.</p>
-                    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 16px;">View Details</a>
-                </div>
-            </div>
+<section id="recommendations" class="container">
+  <h2 class="section-title">Client <span>Testimonials</span></h2>
+  <div class="grid-2">
+    <div class="review-card glass">
+      <p class="review-text">"Reyhane is a brilliant strategist. Her ability to seamlessly merge UI/UX principles with aggressive growth marketing resulted in our highest converting quarter to date."</p>
+      <div class="reviewer"><div class="reviewer-img"></div><div class="reviewer-info"><h4>Sarah Jenkins</h4><p>CEO, TechStartup</p></div></div>
+    </div>
+    <div class="review-card glass">
+      <p class="review-text">"Managing cross-functional teams is not easy, but Reyhane handled it flawlessly. The 3x increase in sales speaks volumes about her dedication and data-driven approach."</p>
+      <div class="reviewer"><div class="reviewer-img"></div><div class="reviewer-info"><h4>Ali Ahmadi</h4><p>Product Lead</p></div></div>
+    </div>
+  </div>
+</section>
 
-            <!-- Project 3 -->
-            <div class="project-card glass">
-                <div class="project-img"></div>
-                <div class="project-content">
-                    <p class="project-company">Independent | 2023</p>
-                    <h3>E-commerce UI/UX Redesign</h3>
-                    <div class="project-tags">
-                        <span class="badge">UI/UX</span>
-                        <span class="badge">Figma</span>
-                    </div>
-                    <p class="project-desc">Redesigned the user interface for an online store, optimizing the checkout flow and enhancing user retention.</p>
-                    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 16px;">View Details</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="faq" class="container">
+  <h2 class="section-title">Common <span>Questions</span></h2>
+  <div class="faq-list">
+    <details class="glass"><summary>Are you available for freelance projects?</summary><div class="faq-answer">Yes, I am currently open to taking on select freelance projects, particularly in digital marketing strategy, campaign management, and UI/UX design.</div></details>
+    <details class="glass"><summary>Do you work remotely?</summary><div class="faq-answer">Absolutely. I have extensive experience managing remote, cross-functional teams and delivering projects across different time zones.</div></details>
+    <details class="glass"><summary>What tools do you primarily use?</summary><div class="faq-answer">For marketing, I rely on Google Analytics, Ads Manager, and various CRM platforms. For design, Figma is my go-to tool.</div></details>
+  </div>
+</section>
 
-    <!-- CASE STUDIES SECTION -->
-    <section id="case-studies" class="container">
-        <h2 class="section-title">Case <span>Studies</span></h2>
-        
-        <div class="grid-3">
-            <!-- Case Study 1 -->
-            <div class="project-card glass" style="background: rgba(255,87,34,0.05);">
-                <div class="project-img"></div>
-                <div class="project-content">
-                    <h3>Scaling from 30 to 500 Leads</h3>
-                    <div class="project-tags">
-                        <span class="badge">Performance Marketing</span>
-                        <span class="badge">Analytics</span>
-                    </div>
-                    <p class="project-desc">How shifting from an awareness-driven model to a conversion-oriented strategy transformed the business.</p>
-                    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; margin-top: auto;">Read Case Study</a>
-                </div>
-            </div>
-
-            <!-- Case Study 2 -->
-            <div class="project-card glass" style="background: rgba(255,87,34,0.05);">
-                <div class="project-img"></div>
-                <div class="project-content">
-                    <h3>Organic Growth: +80K Followers</h3>
-                    <div class="project-tags">
-                        <span class="badge">Social Media</span>
-                        <span class="badge">Content</span>
-                    </div>
-                    <p class="project-desc">An in-depth look at the content calendar, team management, and execution that drove massive organic growth.</p>
-                    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; margin-top: auto;">Read Case Study</a>
-                </div>
-            </div>
-
-            <!-- Case Study 3 -->
-            <div class="project-card glass" style="background: rgba(255,87,34,0.05);">
-                <div class="project-img"></div>
-                <div class="project-content">
-                    <h3>3X Sales via Influencer Campaigns</h3>
-                    <div class="project-tags">
-                        <span class="badge">Campaign</span>
-                        <span class="badge">Influencer</span>
-                    </div>
-                    <p class="project-desc">Analyzing a successful cosmetics campaign using influencer marketing and tailored UI landing pages.</p>
-                    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; margin-top: auto;">Read Case Study</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS SECTION (Compact) -->
-    <section id="skills" class="container" style="padding: 50px 0;">
-        <h2 class="section-title" style="margin-bottom: 40px; font-size: 2rem;">Core <span>Skills</span></h2>
-        <div class="skills-container">
-            <div class="skill-tag glass">Team & Project Management</div>
-            <div class="skill-tag glass">Social Media Strategy</div>
-            <div class="skill-tag glass">Paid Media & Ads</div>
-            <div class="skill-tag glass">A/B Testing</div>
-            <div class="skill-tag glass">UI/UX Design</div>
-            <div class="skill-tag glass">Data Analytics & KPIs</div>
-            <div class="skill-tag glass">Lead Generation</div>
-        </div>
-    </section>
-
-    <!-- RECOMMENDATIONS SECTION -->
-    <section id="recommendations" class="container">
-        <h2 class="section-title">Client <span>Testimonials</span></h2>
-        <div class="grid-2">
-            <div class="review-card glass">
-                <p class="review-text">"Reyhane is a brilliant strategist. Her ability to seamlessly merge UI/UX principles with aggressive growth marketing resulted in our highest converting quarter to date."</p>
-                <div class="reviewer">
-                    <div class="reviewer-img"></div>
-                    <div class="reviewer-info">
-                        <h4>Sarah Jenkins</h4>
-                        <p>CEO, TechStartup</p>
-                    </div>
-                </div>
-            </div>
-            <div class="review-card glass">
-                <p class="review-text">"Managing cross-functional teams is not easy, but Reyhane handled it flawlessly. The 3x increase in sales speaks volumes about her dedication and data-driven approach."</p>
-                <div class="reviewer">
-                    <div class="reviewer-img"></div>
-                    <div class="reviewer-info">
-                        <h4>Ali Ahmadi</h4>
-                        <p>Product Lead</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="container">
-        <h2 class="section-title">Common <span>Questions</span></h2>
-        <div class="faq-list">
-            <details class="glass">
-                <summary>Are you available for freelance projects?</summary>
-                <div class="faq-answer">Yes, I am currently open to taking on select freelance projects, particularly in digital marketing strategy, campaign management, and UI/UX design.</div>
-            </details>
-            <details class="glass">
-                <summary>Do you work remotely?</summary>
-                <div class="faq-answer">Absolutely. I have extensive experience managing remote, cross-functional teams and delivering projects across different time zones.</div>
-            </details>
-            <details class="glass">
-                <summary>What tools do you primarily use?</summary>
-                <div class="faq-answer">For marketing, I rely on Google Analytics, Ads Managers, and various CRM platforms. For design, Figma is my go-to tool.</div>
-            </details>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="contact">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 24px;">Let's work <span>together.</span></h2>
-            <div class="footer-links">
-                <a href="mailto:Reyhanehrezaei888@gmail.com">Email Me</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Instagram</a>
-                <a href="#">Dribbble</a>
-            </div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">© 2026 Reyhane Rezaei. All rights reserved.</p>
-        </div>
-    </footer>
+<footer id="contact">
+  <div class="container">
+    <h2 style="font-size:2.5rem;margin-bottom:24px;">Let's work <span style="color:var(--primary)">together.</span></h2>
+    <div class="footer-links">
+      <a href="mailto:Reyhanehrezaei888@gmail.com">Email Me</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">Dribbble</a>
+    </div>
+    <p style="color:var(--text-muted);font-size:.9rem;">© 2026 Reyhane Rezaei. All rights reserved.</p>
+  </div>
+</footer>
 
 </body>
 </html>
